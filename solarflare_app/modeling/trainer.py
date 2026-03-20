@@ -31,10 +31,10 @@ DEFAULT_POLICY_BY_HORIZON = {
 }
 
 
-def _base_catboost_params(horizon: int) -> dict:
+def _base_catboost_params(horizon: int, params_override: dict | None = None) -> dict:
     horizon = int(horizon)
     depth = 8 if horizon in {60, 120} else 7
-    return {
+    base = {
         "loss_function": "Logloss",
         "eval_metric": "Logloss",
         "iterations": 2500,
@@ -48,6 +48,9 @@ def _base_catboost_params(horizon: int) -> dict:
         "allow_writing_files": False,
         "verbose": False,
     }
+    if params_override:
+        base.update(params_override)
+    return base
 
 
 @dataclass
@@ -122,6 +125,12 @@ class HorizonTrainer:
 
         models: list[CatBoostClassifier] = []
         for seed in self.settings.seeds:
+            tuned_params: dict | None = None
+            tuned_path = Path("data/artifacts") / f"best_params_{int(horizon)}m.json"
+            if tuned_path.exists():
+                import json as _json
+                with open(tuned_path) as _f:
+                    tuned_params = _json.load(_f)
             params = _base_catboost_params(horizon)
             params["random_seed"] = int(seed)
             params["scale_pos_weight"] = scale_pos_weight
