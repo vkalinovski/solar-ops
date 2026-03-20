@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - LOG_LEVEL=INFO
+      - UPDATE_EVERY_SEC=60
+      - LOOKBACK_MIN=4320
+      - MAX_STALE_MIN=60.0
+      - ALLOW_ORIGINS=*
+    volumes:
+      - ./bundle:/app/bundle
+      - ./data:/app/data
