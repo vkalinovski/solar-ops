@@ -26,7 +26,7 @@ def block_bootstrap_metric(
     y_true: np.ndarray,
     y_prob: np.ndarray,
     metric_fn: Callable[[np.ndarray, np.ndarray], float],
-    n_iterations: int = 1000,
+    n_iterations: int = 200,
     random_seed: int = 42,
 ) -> BootstrapInterval:
     blocks = build_event_blocks(ts, y_true)
