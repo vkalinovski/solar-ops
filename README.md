@@ -92,30 +92,7 @@ solar-ops/
 
 ---
 
-## Quickstart
 
-```bash
-git clone https://github.com/vkalinovski/solar-ops.git
-cd solar-ops
-pip install .
-
-# Run live inference against SWPC (bundle already in repo)
-python scripts/infer.py --mode live
-
-# Start API server
-python scripts/serve.py
-# → http://localhost:8000/health
-# → http://localhost:8000/now
-# → http://localhost:8000/history
-```
-
-With Docker:
-
-```bash
-docker compose up --build
-```
-
----
 
 ## Training from scratch
 
@@ -152,35 +129,7 @@ Copy `.env.example` → `.env`.
 
 **Live demo:** [solarflares.space](https://solarflares.space/)
 
-## Install
 
-```bash
-pip install .
-```
-
-## Usage
-
-```bash
-# Train all horizons
-python scripts/train.py
-
-# Run live inference against SWPC API
-python scripts/infer.py --mode live
-
-# Start API server
-python scripts/serve.py
-
-# Evaluate holdout metrics
-python scripts/evaluate.py
-```
-
-## Docker
-
-```bash
-docker compose up --build
-```
-
-API available at `http://localhost:8000` — endpoints: `/health`, `/now`, `/history`.
 
 ## Structure
 
@@ -192,13 +141,3 @@ backend/          Dockerfile for the API service
 data/             Raw, gold, artifacts (gitignored except .gitkeep)
 ```
 
-## Configuration
-
-Copy `.env.example` to `.env`. Key settings:
-
-| Variable | Default | Description |
-|---|---|---|
-| `NEG_POS_RATIO` | `3` | Negative-to-positive sampling ratio |
-| `CALIB_YEAR` | `2024` | Calibration year |
-| `HOLDOUT_YEAR` | `2025` | Holdout year |
-| `SEEDS` | `0,1,2,3,4` | Ensemble seeds |
