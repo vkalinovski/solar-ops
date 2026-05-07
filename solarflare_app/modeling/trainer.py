@@ -194,7 +194,7 @@ class HorizonTrainer:
             diagnostics={
                 "calibration": calibration_diag,
                 "threshold_selection": threshold_info,
-                "train_years": [int(y) for y in range(2012, self.settings.calib_year) if y not in self.settings.exclude_years],
+                "train_years": [int(y) for y in range(2012, self.settings.calib_year),
                 "calibration_year": int(self.settings.calib_year),
                 "holdout_year": int(self.settings.holdout_year),
             },
@@ -231,7 +231,7 @@ class HorizonTrainer:
             {
                 "project": "Solar Flare Ops",
                 "horizons": [int(h) for h in self.settings.horizons],
-                "train_period": "2012-2017, 2020-2023",
+                "train_period": "2012-2023",
                 "excluded_years": list(self.settings.exclude_years),
                 "calibration_year": int(self.settings.calib_year),
                 "calibration_split": "CAL_A=Jan-Aug, CAL_B=Sep-Dec",
