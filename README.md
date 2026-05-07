@@ -2,7 +2,7 @@
 
 Probabilistic forecasting of **M1+ solar flare onsets** at four horizons: 60, 120, 360, and 720 minutes.
 
-Built on GOES XRS minute-level irradiance data (2012–2023, excluding solar minimum years 2018–2019). Each horizon is a calibrated CatBoost ensemble of 5 independently-seeded models. Trained weights are included in `bundle/` — no retraining needed to run inference.
+Built on GOES XRS minute-level irradiance data (2012–2023). Each horizon is a calibrated CatBoost ensemble of 5 independently-seeded models. Trained weights are included in `bundle/` — no retraining needed to run inference.
 
 **Live demo:** [solarflares.space](https://solarflares.space/)
 
@@ -84,7 +84,7 @@ solar-ops/
 
 | Set | Years | Purpose |
 |-----|-------|---------|
-| Train | 2012–2017, 2020–2023 | Model fitting |
+| Train | 2012–2023 | Model fitting |
 | CAL_A | Jan–Aug 2024 | Calibrator fitting |
 | CAL_B | Sep–Dec 2024 | Calibrator selection + threshold optimisation |
 | Holdout | 2025 | Final evaluation (never touched during training) |
