@@ -85,7 +85,6 @@ solar-ops/
 | Set | Years | Purpose |
 |-----|-------|---------|
 | Train | 2012–2017, 2020–2023 | Model fitting |
-| Excluded | 2018–2019 | Solar minimum — removed to avoid biasing the negative class |
 | CAL_A | Jan–Aug 2024 | Calibrator fitting |
 | CAL_B | Sep–Dec 2024 | Calibrator selection + threshold optimisation |
 | Holdout | 2025 | Final evaluation (never touched during training) |
