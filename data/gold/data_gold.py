@@ -106,8 +106,8 @@ def add_solar_features(df: pd.DataFrame) -> pd.DataFrame:
         df["sunspot_roll27_mean"] = s.rolling(38880, min_periods=10080).mean()
     if "f107" in df.columns:
         f = df["f107"]
-        df["f107_roll7_mean"]  = f.rolling(10080, min_periods=1440).mean()
-        df["f107_roll7_std"]   = f.rolling(10080, min_periods=1440).std()
+        df["f107_roll7_mean"] = f.rolling(10080, min_periods=1440).mean()
+        df["f107_roll7_std"] = f.rolling(10080, min_periods=1440).std()
         df["f107_roll27_mean"] = f.rolling(38880, min_periods=10080).mean()
     if "n_regions" in df.columns:
         df["n_regions"] = pd.to_numeric(df["n_regions"], errors="coerce").fillna(0)
@@ -205,9 +205,9 @@ def build_year(year: int, raw_dir: Path, gold_dir: Path,
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build GOLD dataset from RAW")
-    parser.add_argument("--raw-dir",      type=Path, default=Path("data/raw"))
-    parser.add_argument("--gold-dir",     type=Path, default=Path("data/gold"))
-    parser.add_argument("--years",        type=int, nargs="+",
+    parser.add_argument("--raw-dir", type=Path, default=Path("data/raw"))
+    parser.add_argument("--gold-dir", type=Path, default=Path("data/gold"))
+    parser.add_argument("--years", type=int, nargs="+",
                         default=list(range(2012, 2026)))
     parser.add_argument("--no-overwrite", action="store_true")
     parser.add_argument("--onset-col",    type=str, default="onset_time")
