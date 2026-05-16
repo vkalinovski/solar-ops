@@ -26,51 +26,51 @@ The system predicts the probability that an M1+ solar flare onset will occur wit
 
 ```
 solar-ops/
-├── solarflare_app/          # Installable Python package
-│   ├── settings.py          # All config via environment variables
-│   ├── data/gold.py         # Gold data loading, sampling, calibration split
+├── solarflare_app/          
+│   ├── settings.py          
+│   ├── data/gold.py        
 │   ├── modeling/
-│   │   ├── trainer.py       # HorizonTrainer — trains + calibrates per horizon
-│   │   ├── calibration.py   # Identity / Platt / Isotonic calibrators
-│   │   ├── metrics.py       # ROC-AUC, PR-AUC, Brier, ECE (pure numpy)
-│   │   ├── bootstrap.py     # Event-block bootstrap for confidence intervals
-│   │   ├── policy.py        # Alert simulation and threshold optimisation
-│   │   └── bundle.py        # BundleWriter, load_horizon_bundle, validate_bundle
+│   │   ├── trainer.py       
+│   │   ├── calibration.py   
+│   │   ├── metrics.py       
+│   │   ├── bootstrap.py     
+│   │   ├── policy.py        
+│   │   └── bundle.py        
 │   ├── inference/
-│   │   ├── offline.py       # Predict from saved bundle on a feature table
-│   │   └── online.py        # Fetch live SWPC XRS → build feature row → predict
-│   ├── api/app.py           # FastAPI: /health /now /history + background poller
-│   ├── storage/store.py     # SQLite persistence (upsert / latest / history)
-│   └── utils/logging.py     # JSON structured logging
+│   │   ├── offline.py      
+│   │   └── online.py        
+│   ├── api/app.py          
+│   ├── storage/store.py    
+│   └── utils/logging.py     
 │
 ├── scripts/
-│   ├── build_dataset.py     # RAW → GOLD pipeline (XRS + daily joins + targets)
-│   ├── tune.py              # Optuna hyperparameter search for one horizon
-│   ├── train.py             # Train all 4 horizons
-│   ├── train_single.py      # Train a single horizon
-│   ├── test_suite.py        # Gold QA + metric reproducibility + bootstrap CI
-│   ├── evaluate.py          # Holdout metrics table
-│   ├── validate.py          # Bundle integrity check
-│   ├── plot.py              # Reliability diagrams, ROC/PR curves
-│   ├── infer.py             # Live or offline single inference
-│   └── serve.py             # Launch FastAPI server
+│   ├── build_dataset.py     
+│   ├── tune.py              
+│   ├── train.py             
+│   ├── train_single.py      
+│   ├── test_suite.py        
+│   ├── evaluate.py          
+│   ├── validate.py          
+│   ├── plot.py             
+│   ├── infer.py             
+│   └── serve.py            
 │
-├── bundle/                  # Trained artifacts — ready for inference
-│   ├── bundle.json          # Top-level metadata
+├── bundle/                 
+│   ├── bundle.json          
 │   └── horizons/
-│       ├── 60m/             # seed_0.cbm … seed_4.cbm + metadata.json
+│       ├── 60m/            
 │       ├── 120m/
 │       ├── 360m/
 │       └── 720m/
 │
-├── backend/                 # Docker service
+├── backend/                
 │   ├── Dockerfile
 │   └── app/main.py
 │
-├── data/                    # Gitignored except .gitkeep markers
-│   ├── raw/                 # GOES XRS, dayind_daily.parquet, srs_daily_agg.parquet
-│   ├── gold/                # Built parquet files, partitioned by year
-│   └── artifacts/           # Evaluation outputs, plots, Optuna results
+├── data/                    
+│   ├── raw/                 
+│   ├── gold/                
+│   └── artifacts/          
 │
 ├── pyproject.toml
 ├── Makefile
